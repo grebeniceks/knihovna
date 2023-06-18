@@ -17,7 +17,7 @@ final class EditPresenter extends Nette\Application\UI\Presenter
     protected function createComponentBookForm(): Form
     {
 
-    $form = new Form;
+        $form = new Form;
 
         $form->addHidden('id');
         $authors = $this->database->table('authors')
@@ -46,11 +46,83 @@ final class EditPresenter extends Nette\Application\UI\Presenter
 
     public function bookFormSucceeded(array $data): void
     {
-        $book = $this->database
-            ->table('books')
-            ->insert($data);
+        $bookId = $this->getParameter('bookId');
 
-        $this->flashMessage('Book was published', 'success');
+        if ($bookId) {
+            $book = $this->database
+                ->table('books')
+                ->get($bookId);
+            $book->update($data);
+
+        } else {
+            $book = $this->database
+                ->table('books')
+                ->insert($data);
+        }
+
+        $this->redirect('Book:show', $book->id);
     }
 
+    /*    public function renderEdit(int $authorId): void
+        {
+            $author = $this->database
+                ->table('authors')
+                ->get($authorId);
+
+            if (!$author) {
+                $this->error('Author not found');
+            }
+
+            $this->getComponent('authorForm')
+                ->setDefaults($author->toArray());
+        }*/
+    public function renderEdit(int $bookId): void
+    {
+        $book = $this->database
+            ->table('books')
+            ->get($bookId);
+
+        if (!$book) {
+            $this->error('Book not found');
+        }
+
+        $this->getComponent('bookForm')
+            ->setDefaults($book->toArray());
+    }
+
+    protected function createComponentAuthorForm(): Form
+    {
+
+        $form = new Form;
+
+        $form->addHidden('id');
+        $form->addText('name', 'Name:')
+            ->setRequired();
+        $form->addText('surname', 'Surname:')
+            ->setRequired();
+
+        $form->addSubmit('send', 'Save and publish');
+        $form->onSuccess[] = [$this, 'authorFormSucceeded'];
+
+        return $form;
+    }
+
+    public function authorFormSucceeded(array $data): void
+    {
+        $authorId = $this->getParameter('authorId');
+
+        if ($authorId) {
+            $author = $this->database
+                ->table('authors')
+                ->get($authorId);
+            $author->update($data);
+
+        } else {
+            $author = $this->database
+                ->table('authors')
+                ->insert($data);
+        }
+
+        $this->redirect('Home:default');
+    }
 }
