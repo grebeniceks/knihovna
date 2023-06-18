@@ -1,12 +1,11 @@
 {block content}
-
     <p><a n:href="Home:default">← back to home</a></p>
     <h1 n:block="title">{$book->name}</h1>
     <div class="book">Author: {$book->author->name} {$book->author->surname}</div>
     <div class="book">Description: {$book->description}</div>
     <div class="book">Year: {$book->year}</div>
     <div class="book">Pages: {$book->pages}</div>
-    <a href="#" class="btn btn-primary">Edit</a>
+    <a class="btn btn-primary" n:href="Edit:edit $book->id">Edit</a>
 
 
 {/block}

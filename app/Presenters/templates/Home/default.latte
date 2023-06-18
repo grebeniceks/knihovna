@@ -16,28 +16,35 @@
                     <td>{$author->id}</td>
                     <td>{$author->name}</td>
                     <td>{$author->surname}</td>
+                    <td><a class="btn btn-primary" n:href="Edit:edit $author->id">Edit</a></td>
+
                 </tr>
             {/foreach}
         </table>
-        <div></div>
-            {foreach $books as $book}
-                <div class="card" style="width: 20rem;">
-                <div class="card-body" >
-                        <h5 class="card-title"><a href="{link Book:show $book->id}">{$book->name}</a>
-                        </h5>
-                        {foreach $authors as $author}
+
+        {foreach $books as $book}
+            <div class="card" style="width: 20rem;">
+                <div class="card-body">
+                    <h5 class="card-title"><a href="{link Book:show $book->id}">{$book->name}</a>
+                    </h5>
+                    {foreach $authors as $author}
                         {if $author->id === $book->id_author}
-                            <p>{$author->name} {$author->surname}</p>
+                            <p>Author: {$author->name} {$author->surname}</p>
                         {/if}
-                        {/foreach}
-                        <p class="card-text">{$book->description|truncate:20}</p>
-                        <a href="#" class="btn btn-primary">Edit</a>
+                    {/foreach}
+
+                    <p class="card-text">Description: {$book->description|truncate:20}</p>
+                    <p class="card-text">Year: {$book->year}</p>
+                    <p class="card-text">Pages: {$book->pages}</p>
+
+
+                    <a class="btn btn-primary" n:href="Edit:edit $book->id">Edit</a>
 
                 </div>
-                </div>
+            </div>
 
-            {/foreach}
-        </div>
+        {/foreach}
+    </div>
 
 
 {/block}
@@ -114,6 +121,7 @@
         float: right;
         margin: 0 0 1em 3em;
     }
+
     /* Chrome, Safari, Edge, Opera */
 
 
