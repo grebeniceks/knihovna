@@ -31,10 +31,9 @@ USE `knihovna`;
 
 CREATE TABLE `authors`
 (
-    `id`      int NOT NULL AUTO_INCREMENT,
+    `id`      int PRIMARY KEY NOT NULL AUTO_INCREMENT,
     `name`    varchar(17) DEFAULT NULL,
-    `surname` varchar(14) DEFAULT NULL,
-    PRIMARY KEY ('id')
+    `surname` varchar(14) DEFAULT NULL
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8
   COLLATE = utf8_general_ci;
@@ -270,13 +269,13 @@ VALUES (1, 'William', 'Faulkner'),
 
 CREATE TABLE `books`
 (
-    `id`          int NOT NULL AUTO_INCREMENT,
-    `id_author`   int(2)       DEFAULT NULL,
+    `id`          int PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    `id_author`   int      DEFAULT NULL,
     `name`        varchar(60)  DEFAULT NULL,
     `description` varchar(255) DEFAULT NULL,
     `year`        int(4)       DEFAULT NULL,
-    `pages`       int(4)       DEFAULT NULL,
-    PRIMARY KEY ('id')
+    `pages`       int(4)       DEFAULT NULL
+
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8
   COLLATE = utf8_general_ci;
