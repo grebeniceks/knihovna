@@ -4,6 +4,7 @@ namespace App\Presenters;
 
 use Nette;
 use Nette\Application\UI\Form;
+
 final class EditPresenter extends Nette\Application\UI\Presenter
 {
     public function __construct(
@@ -33,12 +34,13 @@ final class EditPresenter extends Nette\Application\UI\Presenter
         $form->addInteger('year', 'Year:')
             ->setRequired()
             ->addRule(function ($value) {
-                return $value->getValue() <= 2023 && $value->getValue() >=1800;
-            }, 'Input a value between 0 and 2023');
+                return $value->getValue() <= 2023 && $value->getValue() >= 1800;
+            }, 'Input a value between 1800 and 2023');
         $form->addInteger('pages', 'Pages:')
             ->setRequired();
 
-        $form->addSubmit('send', 'Save and publish');
+        $form->addSubmit('send', 'Submit')
+            ->setHtmlAttribute('class', 'btn btn-primary');
         $form->onSuccess[] = [$this, 'bookFormSucceeded'];
 
         return $form;
@@ -63,19 +65,7 @@ final class EditPresenter extends Nette\Application\UI\Presenter
         $this->redirect('Book:show', $book->id);
     }
 
-    /*    public function renderEdit(int $authorId): void
-        {
-            $author = $this->database
-                ->table('authors')
-                ->get($authorId);
 
-            if (!$author) {
-                $this->error('Author not found');
-            }
-
-            $this->getComponent('authorForm')
-                ->setDefaults($author->toArray());
-        }*/
     public function renderEdit(int $bookId): void
     {
         $book = $this->database
@@ -101,7 +91,8 @@ final class EditPresenter extends Nette\Application\UI\Presenter
         $form->addText('surname', 'Surname:')
             ->setRequired();
 
-        $form->addSubmit('send', 'Save and publish');
+        $form->addSubmit('send', 'Submit')
+            ->setHtmlAttribute('class', 'btn btn-primary');
         $form->onSuccess[] = [$this, 'authorFormSucceeded'];
 
         return $form;

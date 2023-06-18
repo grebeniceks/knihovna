@@ -16,7 +16,6 @@ Requirements
 
 - Web Project for Nette 3.1 requires PHP 8.0
 
-
 Installation
 ------------
 
@@ -25,7 +24,6 @@ download it following [the instructions](https://doc.nette.org/composer). Then u
 
 	composer create-project nette/web-project path/to/install
 	cd path/to/install
-
 
 Make directories `temp/` and `log/` writable.
 

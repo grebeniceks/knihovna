@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Presenters;
 
 use Nette;
@@ -8,7 +9,8 @@ final class AuthorPresenter extends Nette\Application\UI\Presenter
 {
     public function __construct(
         private Nette\Database\Explorer $database,
-    ) {
+    )
+    {
     }
 
     public function renderShow(int $authorId): void
