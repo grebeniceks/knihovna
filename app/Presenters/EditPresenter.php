@@ -4,8 +4,6 @@ namespace App\Presenters;
 
 use Nette;
 use Nette\Application\UI\Form;
-use function Sodium\add;
-
 final class EditPresenter extends Nette\Application\UI\Presenter
 {
     public function __construct(
@@ -18,16 +16,27 @@ final class EditPresenter extends Nette\Application\UI\Presenter
 
     protected function createComponentBookForm(): Form
     {
-        $form = new Form;
+
+    $form = new Form;
+
+        $form->addHidden('id');
+        $authors = $this->database->table('authors')
+            ->select('CONCAT(name, " ", surname) AS full_name, id')
+            ->order('full_name')
+            ->fetchPairs('id', 'full_name');
+        $form->addSelect('id_author', 'Author:', $authors)
+            ->setRequired();
         $form->addText('name', 'Name:')
             ->setRequired();
         $form->addTextArea('description', 'Description:')
             ->setRequired();
         $form->addInteger('year', 'Year:')
             ->setRequired()
-            ->addRule(function ($book) {
-                return $book->getValue() <= 2023 && $book->getValue() >=0;
+            ->addRule(function ($value) {
+                return $value->getValue() <= 2023 && $value->getValue() >=1800;
             }, 'Input a value between 0 and 2023');
+        $form->addInteger('pages', 'Pages:')
+            ->setRequired();
 
         $form->addSubmit('send', 'Save and publish');
         $form->onSuccess[] = [$this, 'bookFormSucceeded'];
@@ -42,7 +51,6 @@ final class EditPresenter extends Nette\Application\UI\Presenter
             ->insert($data);
 
         $this->flashMessage('Book was published', 'success');
-        $this->redirect('Book:show', $book->id);
     }
 
 }

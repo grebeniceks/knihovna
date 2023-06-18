@@ -1,8 +1,9 @@
-{* This is the welcome page, you can delete it *}
 {block content}
-    <a n:href="Edit:create">Write new post</a>
+    <a n:href="Edit:create">Add new book</a>
+
 
     <div>
+
         <table>
             <tr>
                 <th>ID</th>
@@ -20,12 +21,19 @@
         </table>
         <div></div>
             {foreach $books as $book}
-                <div class="card"style="width: 20rem;">
+                <div class="card" style="width: 20rem;">
                 <div class="card-body" >
-                        <h5 class="card-title">{$book->name}</h5>
+                        <h5 class="card-title"><a href="{link Book:show $book->id}">{$book->name}</a>
+                        </h5>
+                        {foreach $authors as $author}
+                        {if $author->id === $book->id_author}
+                            <p>{$author->name} {$author->surname}</p>
+                        {/if}
+                        {/foreach}
                         <p class="card-text">{$book->description|truncate:20}</p>
                         <a href="#" class="btn btn-primary">Edit</a>
-                    </div>
+
+                </div>
                 </div>
 
             {/foreach}
