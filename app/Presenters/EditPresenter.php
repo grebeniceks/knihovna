@@ -28,8 +28,10 @@ final class EditPresenter extends Nette\Application\UI\Presenter
         $form->addSelect('id_author', 'Author:', $authors)
             ->setRequired();
         $form->addText('name', 'Name:')
+            ->setMaxLength(60)
             ->setRequired();
         $form->addTextArea('description', 'Description:')
+            ->setMaxLength(300)
             ->setRequired();
         $form->addInteger('year', 'Year:')
             ->setRequired()
@@ -37,7 +39,10 @@ final class EditPresenter extends Nette\Application\UI\Presenter
                 return $value->getValue() <= 2023 && $value->getValue() >= 1800;
             }, 'Input a value between 1800 and 2023');
         $form->addInteger('pages', 'Pages:')
-            ->setRequired();
+            ->setRequired()
+            ->addRule(function ($value) {
+                return $value->getValue() <= 1000 && $value->getValue() >= 100;
+            }, 'Input a value between 100 and 1000');
 
         $form->addSubmit('send', 'Submit')
             ->setHtmlAttribute('class', 'btn btn-primary');
