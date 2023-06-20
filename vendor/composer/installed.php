@@ -3,11 +3,11 @@
         'name' => 'nette/web-project',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '8e8f31cbb759f75225ab306c5d555b96078d06f9',
+        'reference' => '04655884bcbfd606ff3445c85eb38c29c2fac367',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'dev' => true,
+        'dev' => false,
     ),
     'versions' => array(
         'latte/latte' => array(
@@ -163,15 +163,6 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
-        'nette/tester' => array(
-            'pretty_version' => 'v2.5.0',
-            'version' => '2.5.0.0',
-            'reference' => '78555c76859208ee049335863e63e357ba71578f',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../nette/tester',
-            'aliases' => array(),
-            'dev_requirement' => true,
-        ),
         'nette/utils' => array(
             'pretty_version' => 'v4.0.0',
             'version' => '4.0.0.0',
@@ -184,20 +175,11 @@
         'nette/web-project' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '8e8f31cbb759f75225ab306c5d555b96078d06f9',
+            'reference' => '04655884bcbfd606ff3445c85eb38c29c2fac367',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
             'dev_requirement' => false,
-        ),
-        'symfony/thanks' => array(
-            'pretty_version' => 'v1.2.10',
-            'version' => '1.2.10.0',
-            'reference' => 'e9c4709560296acbd4fe9e12b8d57a925aa7eae8',
-            'type' => 'composer-plugin',
-            'install_path' => __DIR__ . '/../symfony/thanks',
-            'aliases' => array(),
-            'dev_requirement' => true,
         ),
         'tracy/tracy' => array(
             'pretty_version' => 'v2.10.2',
