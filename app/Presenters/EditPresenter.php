@@ -45,7 +45,7 @@ final class EditPresenter extends Nette\Application\UI\Presenter
             }, 'Input a value between 100 and 1000');
 
         $form->addSubmit('send', 'Submit')
-            ->setHtmlAttribute('class', 'btn btn-primary');
+            ->setHtmlAttribute('class', 'btn mt-2 btn-primary');
         $form->onSuccess[] = [$this, 'bookFormSucceeded'];
 
         return $form;
@@ -97,7 +97,7 @@ final class EditPresenter extends Nette\Application\UI\Presenter
             ->setRequired();
 
         $form->addSubmit('send', 'Submit')
-            ->setHtmlAttribute('class', 'btn btn-primary');
+            ->setHtmlAttribute('class', 'btn mt-2 btn-primary');
         $form->onSuccess[] = [$this, 'authorFormSucceeded'];
 
         return $form;

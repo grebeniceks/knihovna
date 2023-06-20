@@ -1,17 +1,41 @@
 {block content}
-        <nav class="navbar text-light  shadow sticky-top nav center block mx-auto  " style="border: #0e1012 solid 10px; background-color: #0e1012">
-            <h1 href="#">Books</h1>
-            <h2 class=""><a n:href="Edit:create">Add new book</a></h2>
-            <h2><a n:href="Edit:createAuthor">Add new author</a></h2>
-        </nav>
+    <nav class="navbar text-light shadow sticky-top nav justify-content-between"
+         style="border: #16181b solid 10px; background-color: #16181b">
+        <div class="container">
+
+            <div class="col">
+                <h2>
+                    <a class="link-underline-opacity-0 link-light" href="#">Books</a>
+                </h2>
+            </div>
+            <div class="row align-items-center justify-content-end">
+                <div class="col-auto">
+                    <h2>
+                        <a class="icon-link link-underline-opacity-0 link-light" n:href="Edit:create">
+                            <i class="bi bi-file-earmark-plus"></i>
+                        </a>
+                    </h2>
+                </div>
+                <div class="col-auto">
+                    <h2>
+                        <a class="icon-link link-underline-opacity-0 link-light" n:href="Edit:createAuthor">
+                            <i class="bi bi-person-add"></i>
+                        </a>
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </nav>
 
     <div class="container w-75 center block mx-auto pt-5">
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
             {foreach $books as $book}
-                <div class="col mb-4 " >
+                <div class="col mb-4 ">
                     <div class="card h-100 bg-dark border-5 shadow" style="color: #adb5bd; border-color: #adb5bd">
                         <div class="card-header p-0  btn-edit shadow " style="height: 5rem">
-                            <a class="btn btn-primary bold w-100 h-100" style="border-radius: 0; display: flex; align-items: center; justify-content: center;" href="{link Book:show $book->id}">
+                            <a class="btn btn-primary bold w-100 h-100"
+                               style="border-radius: 0; display: flex; align-items: center; justify-content: center;"
+                               href="{link Book:show $book->id}">
                                 <h5 class="">{$book->name}</h5>
                             </a>
                         </div>
@@ -21,19 +45,23 @@
                                     <p><b class="text-light">Author: </b><br>{$author->name} {$author->surname}</p>
                                 {/if}
                             {/foreach}
-                            <p class="card-text" style=""><b class="text-light">Description:</b><br>{$book->description}</p>
-                            <p class="card-text"><b class="text-light">Year:</b> {$book->year} <b class="text-light">Pages:</b> {$book->pages}</p>
+                            <p class="card-text" style=""><b class="text-light">Description:</b><br>{$book->description}
+                            </p>
+                            <p class="card-text"><b class="text-light">Year:</b> {$book->year} <b class="text-light">
+                                        Pages:</b> {$book->pages}</p>
                         </div>
                         <div class="card-footer p-0 btn-edit">
-                            <a n:href="Edit:edit $book->id" class="btn btn-primary bold w-100 h-100" style="border-radius: 0; display: flex; align-items: center; justify-content: center;">Edit</a>
+                            <a n:href="Edit:edit $book->id" class="btn btn-primary bold w-100 h-100"
+                                                            style="border-radius: 0; display: flex; align-items: center; justify-content: center;">Edit</a>
                         </div>
                     </div>
                 </div>
             {/foreach}
         </div>
+        <p class="text-center"><a href="#">&#8593 go up &#8593</a></p>
+
     </div>
 {/block}
-
 
 
 <style>
