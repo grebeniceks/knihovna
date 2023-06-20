@@ -270,11 +270,12 @@ VALUES (1, 'William', 'Faulkner'),
 CREATE TABLE `books`
 (
     `id`          int PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    `id_author`   int          DEFAULT NULL,
+    `id_author`   int         DEFAULT NULL,
     `name`        varchar(60)  DEFAULT NULL,
     `description` varchar(255) DEFAULT NULL,
     `year`        int(4)       DEFAULT NULL,
-    `pages`       int(4)       DEFAULT NULL
+    `pages`       int(4)       DEFAULT NULL,
+    FOREIGN KEY (id_author) REFERENCES authors(id)
 
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8
